@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - AI Assistant</title>
+    <style>
+        /* CSS Identical to login.html */
+        :root {
+            --primary-color: #a491d4; --primary-light: #f5f3fa; --text-color: #4a2a6b;
+            --text-light: #888; --border-color: #eee; --border-focus: #c5b9e8;
+            --shadow-light: rgba(0, 0, 0, 0.04); --shadow-medium: rgba(0, 0, 0, 0.08);
+            --sidebar-bg: #ffffff; --transition-speed: 0.3s; --error-color: #e74c3c;
+             --success-color: #2ecc71; --warning-color: #f39c12;
+        }
+        body {
+            margin: 0; min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; background-color: #ffffff;
+            background-image: radial-gradient(ellipse at 50% 75%, rgba(245, 235, 255, 0.35) 0%, rgba(235, 240, 255, 0.25) 40%, rgba(255, 245, 250, 0.15) 60%, rgba(255, 255, 255, 0) 85%);
+            background-repeat: no-repeat; background-attachment: fixed; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            overflow-x: hidden; padding: 20px; box-sizing: border-box;
+        }
+        .flash-message-container { max-width: 450px; width: 100%; margin: 0 auto 15px auto; padding: 0 20px; box-sizing: border-box; }
+        .flash-message { padding: 10px 15px; margin-bottom: 15px; border-radius: 8px; text-align: center; font-weight: 500; border: 1px solid transparent; }
+        .flash-success { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
+        .flash-danger { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+        .flash-warning { background-color: #fff3cd; color: #856404; border-color: #ffeeba; }
+        .auth-container {
+            background-color: var(--sidebar-bg); padding: 30px 40px; border-radius: 16px; box-shadow: 0 8px 25px var(--shadow-medium);
+            max-width: 400px; width: 100%; text-align: center; box-sizing: border-box; opacity: 0; transform: translateY(20px);
+            animation: fadeInUpForm 0.7s ease-out forwards;
+        }
+        .ai-icon { position: relative; width: 28px; height: 28px; margin: 0 auto 20px auto; color: var(--text-color); }
+        .ai-icon::before, .ai-icon::after { content: ''; position: absolute; background-color: currentColor; border-radius: 1.5px; transform: translate(-50%, -50%); }
+        .ai-icon::before { width: 5px; height: 16px; left: 50%; top: 50%; }
+        .ai-icon::after { width: 16px; height: 5px; left: 50%; top: 50%; }
+        h1 { font-size: 1.8em; font-weight: 500; margin: 0 0 30px; color: var(--text-color); }
+        .auth-form { display: flex; flex-direction: column; gap: 18px; text-align: left; }
+        .input-group { display: flex; flex-direction: column; position: relative; }
+        label { font-size: 0.9em; color: var(--text-light); margin-bottom: 6px; font-weight: 500; }
+        .form-input {
+            width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1em; color: #333;
+            transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease; box-sizing: border-box; background-color: #fff;
+        }
+        .form-input::placeholder { color: #bbb; font-weight: 400; }
+        .form-input:focus { outline: none; border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(164, 145, 212, 0.2); }
+        .form-input.error { border-color: var(--error-color); }
+        .form-input.error:focus { box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2); }
+        .error-message { color: var(--error-color); font-size: 0.8em; margin-top: 4px; min-height: 1.2em; }
+        .form-button {
+            background-color: var(--primary-color); color: white; padding: 14px 20px; border: none; border-radius: 8px; cursor: pointer;
+            font-size: 1em; font-weight: 500; transition: background-color var(--transition-speed) ease, transform 0.2s ease; margin-top: 10px; width: 100%;
+        }
+        .form-button:hover { background-color: #8a70bf; transform: scale(1.02); }
+        .form-button:active { transform: scale(0.98); }
+        .auth-links { margin-top: 25px; font-size: 0.9em; }
+        .auth-link { color: var(--primary-color); text-decoration: none; transition: color var(--transition-speed) ease; }
+        .auth-link:hover { color: var(--text-color); text-decoration: underline; }
+        @keyframes fadeInUpForm { to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <!-- Flash Message Display Area -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-message-container">
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="auth-container">
+        <div class="ai-icon"></div>
+        <h1>Create Account</h1>
+
+        <form id="signupForm" class="auth-form" method="post" action="{{ url_for('signup_page') }}">
+             <!-- errors dict comes from render_template context -->
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username"
+                       class="form-input {{ 'error' if errors and errors.username }}"
+                       placeholder="Choose a username" required value="{{ username if username else '' }}">
+                <div class="error-message">{{ errors.username if errors and errors.username }}</div>
+            </div>
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email"
+                       class="form-input {{ 'error' if errors and errors.email }}"
+                       placeholder="you@example.com" required value="{{ email if email else '' }}">
+                 <div class="error-message">{{ errors.email if errors and errors.email }}</div>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password"
+                       class="form-input {{ 'error' if errors and (errors.password or (errors.confirm_password and 'match' in errors.confirm_password)) }}"
+                       placeholder="Create a password (min 6 chars)" required minlength="6">
+                 <div class="error-message">{{ errors.password if errors and errors.password }}</div>
+            </div>
+             <div class="input-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password"
+                       class="form-input {{ 'error' if errors and errors.confirm_password }}"
+                       placeholder="Repeat your password" required>
+                 <div class="error-message">{{ errors.confirm_password if errors and errors.confirm_password }}</div>
+            </div>
+            <button type="submit" class="form-button">Sign Up</button>
+        </form>
+
+        <div class="auth-links">
+            <span>Already have an account?</span>
+            <a href="{{ url_for('login_page') }}" class="auth-link">Log In</a>
+        </div>
+    </div>
+     <!-- No client-side JavaScript validation needed -->
+</body>
+</html>

@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<aiml version="1.0">
+
+    <!-- Greet -->
+    <category>
+        <pattern>HELLO</pattern>
+        <template>
+            <random>
+                <li>Hello! How can I assist you today?</li>
+                <li>Hi there! What would you like to know?</li>
+                <li>Greetings! How can I help you?</li>
+                <li>Hey! What can I do for you?</li>
+                <li>Hi! Do you have any questions for me?</li>
+                <li>Welcome! How can I be of service?</li>
+                <li>Hi! What would you like to talk about?</li>
+                <li>Hello! Is there something specific you want to know?</li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+        <pattern>HI</pattern>
+        <template><srai>HELLO</srai></template>
+    </category>
+
+    <category>
+        <pattern>HEY</pattern>
+        <template><srai>HELLO</srai></template>
+    </category>
+
+    <category>
+        <pattern>ASSALAMUALAIKUM</pattern>
+        <template>
+            <random>
+                <li>Walaikumasalam! How can I assist you today?</li>
+                <li>Walaikumasalam! What would you like to know?</li>
+                <li>Walaikumasalam! How can I help you?</li>
+                <li>Walaikumasalam! What can I do for you?</li>
+                <li>Walaikumasalam! Do you have any questions for me?</li>
+                <li>Walaikumasalam! How can I be of service?</li>
+                <li>Walaikumasalam! What would you like to talk about?</li>
+                <li>Walaikumasalam! Is there something specific you want to know?</li>
+            </random>
+        </template>
+    </category>
+
+    <!-- FIRST QUESTION -->
+    <category>
+        <pattern> DO YOU KNOW WHO IS * OF *</pattern>
+        <template>
+            <think>
+                <set name="type">type1</set> 
+                <!-- For checking type of question -->
+                <set name="person"><star index="2"/></set>
+                <set name="relation"><star index="1"/></set>
+            </think>
+            <condition name="relation">
+                <li value="mother">
+                    <random>
+                        <li><get name="person_name"/> mother is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/>'s mother.</li>
+                        <li>Let me recall <get name="person_name"/>'s mother... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/>'s mother is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> mother.</li>
+                    </random>
+                </li>
+
+                <li value="amma">
+                    <random>
+                        <li><get name="person_name"/> amma is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> amma.</li>
+                        <li>Let me recall <get name="person_name"/> amma... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> amma is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> amma.</li>
+                    </random>
+                </li>
+
+                <li value="mom">
+                    <random>
+                        <li><get name="person_name"/> mom is <get name="mom"/>.</li>
+                        <li><get name="mother"/> is <get name="person_name"/> mom.</li>
+                        <li>Let me recall <get name="person_name"/> mom... Ah, it's <get name="mom"/>.</li>
+                        <li>You've told me <get name="person_name"/> mom is <get name="mom"/>.</li>
+                        <li>Oh, you mean <get name="mom"/> ? That's <get name="person_name"/> mom.</li>
+                    </random>
+                </li>
+
+                <li value="father">
+                    <random>
+                        <li><get name="person_name"/> father is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> father.</li>
+                        <li>Let me recall <get name="person_name"/> father... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> father is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> father.</li>
+                    </random>
+                </li>
+
+                <li value="dad">
+                    <random>
+                        <li><get name="person_name"/> dad is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> dad.</li>
+                        <li>Let me recall <get name="person_name"/> dad... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> dad is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> dad.</li>
+                    </random>
+                </li>
+
+                <li value="abba">
+                    <random>
+                        <li><get name="person_name"/> abba is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> abba.</li>
+                        <li>Let me recall <get name="person_name"/> abba... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> abba is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> abba.</li>
+                    </random>
+                </li>
+
+                <li value="sister">
+                    <random>
+                        <li><get name="person_name"/> sister is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> sister.</li>
+                        <li>Let me recall <get name="person_name"/> sister... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> sister is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> sister.</li>
+                    </random>
+                </li>
+
+                <li value="behan">
+                    <random>
+                        <li><get name="person_name"/> behan is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> behan.</li>
+                        <li>Let me recall <get name="person_name"/> behan... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> behan is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> behan.</li>
+                    </random>
+                </li>
+
+                <li value="brother">
+                    <random>
+                        <li><get name="person_name"/> brother is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> brother.</li>
+                        <li>Let me recall <get name="person_name"/> brother... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> brother is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> brother.</li>
+                    </random>
+                </li>
+
+                <li value="bhai">
+                    <random>
+                        <li><get name="person_name"/> bhai is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> bhai.</li>
+                        <li>Let me recall <get name="person_name"/> bhai... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> bhai is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> bhai.</li>
+                    </random>
+                </li>
+
+                <li value="sibling">
+                    <random>
+                        <li><get name="person_name"/> sibling is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> sibling.</li>
+                        <li>Let me recall <get name="person_name"/> sibling... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> sibling is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> sibling.</li>
+                    </random>
+                </li>
+
+                <li value="maternal grandfather">
+                    <random>
+                        <li><get name="person_name"/> maternal grandfather is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> maternal grandfather.</li>
+                        <li>Let me recall <get name="person_name"/> maternal grandfather... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> maternal grandfather is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> maternal grandfather.</li>
+                    </random>
+                </li>
+
+                <li value="nana">
+                    <random>
+                        <li><get name="person_name"/> nana is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> nana.</li>
+                        <li>Let me recall <get name="person_name"/> nana... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> nana is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> nana.</li>
+                    </random>
+                </li>
+                <li value="maternal grandmother">
+                    <random>
+                        <li><get name="person_name"/> maternal grandmother is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> maternal grandmother.</li>
+                        <li>Let me recall <get name="person_name"/> maternal grandmother... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> maternal grandmother is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> maternal grandmother.</li>
+                    </random>
+                </li>
+                <li value="nani">
+                    <random>
+                        <li><get name="person_name"/> nani is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> nani.</li>
+                        <li>Let me recall <get name="person_name"/> nani... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> nani is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> nani.</li>
+                    </random>
+                </li>
+                <li value="nano">
+                    <random>
+                        <li><get name="person_name"/> nano is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> nano.</li>
+                        <li>Let me recall <get name="person_name"/> nano... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> nano is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> nano.</li>
+                    </random>
+                </li>
+                <li value="paternal grandfather">
+                    <random>
+                        <li><get name="person_name"/> paternal grandfather is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> paternal grandfather.</li>
+                        <li>Let me recall <get name="person_name"/> paternal grandfather... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> paternal grandfather is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> paternal grandfather.</li>
+                    </random>
+                </li>
+                <li value="dada">
+                    <random>
+                        <li><get name="person_name"/> dada is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> dada.</li>
+                        <li>Let me recall <get name="person_name"/> dada... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> dada is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> dada.</li>
+                    </random>
+                </li>
+
+                <li value="paternal grandmother">
+                    <random>
+                        <li><get name="person_name"/> paternal grandmother is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> paternal grandmother.</li>
+                        <li>Let me recall <get name="person_name"/> paternal grandmother... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> paternal grandmother is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> paternal grandmother.</li>
+                    </random>
+                </li>
+
+                <li value="dado">
+                    <random>
+                        <li><get name="person_name"/> dado is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> dado.</li>
+                        <li>Let me recall <get name="person_name"/> dado... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> dado is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> dado.</li>
+                    </random>
+                </li>
+
+                <li value="dadi">
+                    <random>
+                        <li><get name="person_name"/> dadi is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> dadi.</li>
+                        <li>Let me recall <get name="person_name"/> dadi... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> dadi is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> dadi.</li>
+                    </random>
+                </li>
+
+                <li value="maternal uncle">
+                    <random>
+                        <li><get name="person_name"/> maternal uncle is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> maternal uncle.</li>
+                        <li>Let me recall <get name="person_name"/> maternal uncle... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> maternal uncle is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> maternal uncle.</li>
+                    </random>
+                </li>
+
+                <li value="mamo">
+                    <random>
+                        <li><get name="person_name"/> mamo is <get name="mamo"/>.</li>
+                        <li><get name="mamo"/> is <get name="person_name"/> mamo.</li>
+                        <li>Let me recall <get name="person_name"/> mamo... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> mamo is <get name="mamo"/>.</li>
+                        <li>Oh, you mean <get name="mamo"/> ? That's <get name="person_name"/> mamo.</li>
+                    </random>
+                </li>
+
+                <li value="maternal aunt">
+                    <random>
+                        <li><get name="person_name"/> maternal aunt is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> maternal aunt.</li>
+                        <li>Let me recall <get name="person_name"/> maternal aunt... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> maternal aunt is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> maternal aunt.</li>
+                    </random>
+                </li>
+
+                <li value="khala">
+                    <random>
+                        <li><get name="person_name"/> khala is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> khala.</li>
+                        <li>Let me recall <get name="person_name"/> khala... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> khala is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> khala.</li>
+                    </random>
+                </li>
+
+                 <li value="maternal cousin">
+                    <random>
+                        <li><get name="person_name"/> maternal cousin is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> maternal cousin.</li>
+                        <li>Let me recall <get name="person_name"/> maternal cousin... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> maternal cousin is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> maternal cousin.</li>
+                    </random>
+                </li>
+
+                <li value="maternal niece">
+                    <random>
+                        <li><get name="person_name"/> maternal niece is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> maternal niece.</li>
+                        <li>Let me recall <get name="person_name"/> maternal niece... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> maternal niece is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> maternal niece.</li>
+                    </random>
+                </li>   
+
+                <li value="maternal nephew">
+                    <random>
+                        <li><get name="person_name"/> maternal nephew is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> maternal nephew.</li>
+                        <li>Let me recall <get name="person_name"/> maternal nephew... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> maternal nephew is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> maternal nephew.</li>
+                    </random>   
+                </li>
+
+            <!-- DAD SIDE FAMILY  -->
+
+                <li value="paternal uncle">
+                    <random>
+                        <li><get name="person_name"/> paternal uncle is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> paternal uncle.</li>
+                        <li>Let me recall <get name="person_name"/> paternal uncle... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> paternal uncle is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> paternal uncle.</li>
+                    </random>
+                </li>
+
+                <li value="chacha">
+                    <random>
+                        <li><get name="person_name"/> chacha is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> chacha.</li>
+                        <li>Let me recall <get name="person_name"/> chacha... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> chacha is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> chacha.</li>
+                    </random>
+                </li>
+
+                <li value="chachu">
+                    <random>
+                        <li><get name="person_name"/> chachu is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> chachu.</li>
+                        <li>Let me recall <get name="person_name"/> chachu... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> chachu is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> chachu.</li>
+                    </random>
+                </li>
+
+                <li value="paternal aunt">
+                    <random>
+                        <li><get name="person_name"/> paternal aunt is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> paternal aunt.</li>
+                        <li>Let me recall <get name="person_name"/> paternal aunt... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> paternal aunt is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> paternal aunt.</li>
+                    </random>
+                </li>
+
+                <li value="popho">
+                    <random>
+                        <li><get name="person_name"/> popho is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> popho.</li>
+                        <li>Let me recall <get name="person_name"/> popho... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> popho is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> popho.</li>
+                    </random>
+                </li>
+
+                <li value="paternal cousin">
+                    <random>
+                        <li><get name="person_name"/> paternal cousin is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> paternal cousin.</li>
+                        <li>Let me recall <get name="person_name"/> paternal cousin... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> paternal cousin is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> paternal cousin.</li>
+                    </random>
+                </li>
+
+                <li value="paternal niece">
+                    <random>
+                        <li><get name="person_name"/> paternal niece is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> paternal niece.</li>
+                        <li>Let me recall <get name="person_name"/> paternal niece... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> paternal niece is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> paternal niece.</li>
+                    </random>
+                </li>
+
+                <li value="paternal nephew">
+                    <random>
+                        <li><get name="person_name"/> paternal nephew is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> paternal nephew.</li>
+                        <li>Let me recall <get name="person_name"/> paternal nephew... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> paternal nephew is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> paternal nephew.</li>
+                    </random>
+
+                </li>
+
+
+            <!-- FRIENDS AND BEST-FRIENDS -->
+                <li value="friend">
+                    <random>
+                        <li><get name="person_name"/> friend is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> friend.</li>
+                        <li>Let me recall <get name="person_name"/> friend... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> friend is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> friend.</li>
+                    </random>
+                </li>
+
+                <li value="best friend">
+                    <random>
+                        <li><get name="person_name"/> best friend is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> best friend.</li>
+                        <li>Let me recall <get name="person_name"/> best friend... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> best friend is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> best friend.</li>
+                    </random>
+                </li>
+
+            <!-- SPOUSE -->
+                <li value="wife">
+                    <random>
+                        <li><get name="person_name"/> wife is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> wife.</li>
+                        <li>Let me recall <get name="person_name"/> wife... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> wife is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> wife.</li>
+                    </random>
+                </li>
+
+                <li value="biwi">
+                    <random>
+                        <li><get name="person_name"/> biwi is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> biwi.</li>
+                        <li>Let me recall <get name="person_name"/> biwi... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> biwi is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> biwi.</li>
+                    </random>
+                </li>
+
+                <li value="husband">
+                    <random>
+                        <li><get name="person_name"/> husband is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> husband.</li>
+                        <li>Let me recall <get name="person_name"/> husband... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> husband is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> husband.</li>
+                    </random>
+                </li>
+
+                <li value="shohar">
+                    <random>
+                        <li><get name="person_name"/> shohar is <get name="relative"/>.</li>
+                        <li><get name="relative"/> is <get name="person_name"/> shohar.</li>
+                        <li>Let me recall <get name="person_name"/> shohar... Ah, it's <get name="relative"/>.</li>
+                        <li>You've told me <get name="person_name"/> shohar is <get name="relative"/>.</li>
+                        <li>Oh, you mean <get name="relative"/> ? That's <get name="person_name"/> shohar.</li>
+                    </random>
+                </li>
+                
+
+            <!-- INTERNAL FALLBACK -->
+                <li>I'm not sure who <get name="person_name"/> <get name="relation"/> is. Could you clarify?</li>
+            </condition>
+        </template>
+    </category>
+
+<!-- MAPPING OTHER QUESTIONS TO MAIN QUESTION -->
+    <category>
+        <pattern>WHO IS * OF *</pattern>
+        <template>
+            <srai>DO YOU KNOW WHO IS <star index="1"/> OF <star index="2"/></srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>TELL ME ABOUT * OF *</pattern>
+        <template>
+            <srai>DO YOU KNOW WHO IS <star index="1"/> OF <star index="2"/></srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>CAN YOU TELL ME ABOUT * OF *</pattern>
+        <template>
+            <srai>DO YOU KNOW WHO IS <star index="1"/> OF <star index="2"/></srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>CAN YOU TELL WHO IS * OF *</pattern>
+        <template>
+            <srai>DO YOU KNOW WHO IS <star index="1"/> OF <star index="2"/></srai>
+        </template>
+    </category>
+
+<!-- GROUP RELATIONS -->
+    <category>
+        <pattern>WHO ARE * OF *</pattern>
+        <template>
+            <srai>DO YOU KNOW WHO IS <star index="1"/> OF <star index="2"/></srai>
+        </template>
+    </category>
+
+
+<!-- Relationship verification -->
+<!-- TYPE 2 QUESTIONS -->
+    <category>
+        <pattern>IS * THE * OF *</pattern>
+        <template>
+            <think>
+                <set name="type">type2</set>
+                <!-- Type of Question -->
+                <set name="possible_relative"><star index="1"/></set>
+                <set name="relation"><star index="2"/></set>
+                <set name="person"><star index="3"/></set>
+                <get name="status"/>
+            </think>
+            <condition name="status">
+                <li value="yes">
+                    <random>
+                        <li>Yes, <get name="possible_relative"/> is <get name="relation"/> of <get name="person_name"/>.</li>
+                        <li>Yes, <get name="possible_relative"/> is the <get name="relation"/> of <get name="person_name"/>.</li>
+                        <li>Yes, I can confirm that <get name="possible_relative"/> is the <get name="relation"/> of <get name="person_name"/>.</li>
+                        <li>Yes, that's correct! <get name="possible_relative"/> is the <get name="relation"/> of <get name="person_name"/>.</li>
+                    </random>
+                </li>
+                <li value="no">
+                    <random>
+                        <li>No, that's not correct. <get name="possible_relative"/> is not the <get name="relation"/> of <get name="person_name"/>.</li>
+                        <li>No, I don't think so. <get name="possible_relative"/> is not the <get name="relation"/> of <get name="person_name"/>.</li>
+                        <li>No, that's incorrect. <get name="possible_relative"/> is not the <get name="relation"/> of <get name="person_name"/>.</li>
+                    </random>
+                </li>
+                <li>I'm not sure about that. Could you clarify the relationship?</li>
+            </condition>
+        </template>
+    </category>
+
+    <category>
+        <pattern>CAN YOU TELL IF * IS * OF *</pattern>
+        <template>
+            <srai>IS <star index="1"/> THE <star index="2"/> OF <star index="3"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>CAN YOU LOOK AND SEE IF * IS * OF *</pattern>
+        <template>
+            <srai>IS <star index="1"/> THE <star index="2"/> OF <star index="3"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>CAN YOU VERIFY IF * IS * OF *</pattern>
+        <template>
+            <srai>IS <star index="1"/> THE <star index="2"/> OF <star index="3"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>CAN YOU CHECK IF * IS * OF *</pattern>
+        <template>
+            <srai>IS <star index="1"/> THE <star index="2"/> OF <star index="3"/> </srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>CAN YOU FIND OUT IF * IS * OF *</pattern>
+        <template>
+            <srai>IS <star index="1"/> THE <star index="2"/> OF <star index="3"/> </srai>
+        </template>
+    </category>
+
+<!-- AGE RELATED QUESTIONS -->
+<!-- Type age -->
+    <category>
+        <pattern>WHAT IS * AGE</pattern>
+        <think>
+            <set name="type">age_type</set>
+            <set name="person"><star/></set>
+        </think>
+        <template>   
+            <random>
+                <li><star/> age is <get name="age"/>.</li>
+                <li>Age of <star/> is <get name="age"/>.</li>
+                <li><star/> is <get name="age"/> years old.</li>
+                <li>Hmm.. <star/> was born in <get name="birth_year"/>. So he should be of <get name="age"/> years.</li>
+                <li>Let's calculate! If <star/> was born in <get name="birth_year"/> then his age should be <get name="age"/> years.</li>
+                <li>Looks like <star/> just turned <get name="age"/>—happy belated birthday!</li>
+                <li>By my calculations, <star/> clocks in at <get name="age"/> years old.</li>
+                <li>Fun fact: <star/> is now <get name="age"/> years young!</li>
+                <li>According to the records, <star/> has celebrated <get name="age"/> trips around the sun.</li>
+                <li>Counting from <get name="birth_year"/>, I get that <star/> is <get name="age"/> years in age.</li>
+                <li>If you do the math—<get name="current_year"/> minus <get name="birth_year"/> you land at <get name="age"/>.</li>
+                <li>Ask the calendar: it says <star/> is exactly <get name="age"/> years old.</li>
+                <li>Age check complete: <star/> → <get name="age"/> years.</li>
+                <li>It's official: <star/> turned <get name="age"/> this year.</li>
+                <li>Time flies—<star/> is already <get name="age"/> years old!</li>
+                <li>I confirm: <star/>'s age is <get name="age"/> years.</li>
+                <li>That makes <star/> exactly <get name="age"/> years of age.</li>
+                <li>From <get name="birth_year"/> to now, <star/> has spanned <get name="age"/> years.</li>
+            </random>
+        </template> 
+    </category>
+<!-- Fallback -->
+    <category>
+        <pattern>*</pattern>
+        <template>I'm not sure how to answer that. Try asking about my family.</template>
+    </category>
+</aiml>
